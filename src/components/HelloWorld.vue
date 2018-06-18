@@ -164,6 +164,51 @@ export default {
             { text: "Right answer", correct: true },
             { text: "Wrong answer", correct: false }
           ]
+        },
+        {
+          text: "Question 6",
+          price: 500,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "Right answer", correct: true },
+            { text: "Wrong answer", correct: false }
+          ]
+        },
+        {
+          text: "Question 7",
+          price: 400,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "Right answer", correct: true },
+            { text: "Wrong answer", correct: false }
+          ]
+        },
+        {
+          text: "Question 8",
+          price: 300,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "Right answer", correct: true },
+            { text: "Wrong answer", correct: false }
+          ]
+        },
+        {
+          text: "Question 9",
+          price: 200,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "Right answer", correct: true },
+            { text: "Wrong answer", correct: false }
+          ]
+        },
+        {
+          text: "Question 10",
+          price: 100,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "Right answer", correct: true },
+            { text: "Wrong answer", correct: false }
+          ]
         }
       ]
     };
