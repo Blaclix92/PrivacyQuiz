@@ -1,21 +1,24 @@
 
 <template>
 <div class="hello">
-  <div class="row">
+  <div v-if="!start">
+    <h1>Welcome to Privacy Quiz</h1>
+    <p>Explanation</p>
+    <button type="button" class="btn btn-outline-primary"  v-on:click="startGame()">Start</button>     
+  </div>
+  <div class="row"  v-if="start">
     <div class="col-md-4"> </div>
     <div class="col-md-4">
       <h1>{{ quiz.title }}</h1>
-      <div class="questionbox">{{ question.text }}</div>
+      <div class="questionbox" v-if="question.text">{{ question.text }}</div>
         <ul>
           <li v-for='(response, index) in question.responses' :key='index'>
-            <button type="button" class="answerbox" v-on:click="validateQuestion(response.correct)">{{response.text}} </button>                       
+            <button type="button" class="answerbox" :disabled="showExplanation" v-on:click="validateQuestion(response.correct)">{{response.text}} </button>                       
           </li>
         </ul>
         <div v-if="showExplanation">
                 <p>{{question.explanation}}</p>
-                  <button type="button" class="btn btn-outline-primary" v-on:click="continueGame()">Continue</button>  
-                or 
-                  <button type="button" class="btn btn-outline-primary"  v-on:click="quitGame()">Close the deal</button>     
+                <button type="button" class="btn btn-outline-primary" v-on:click="continueGame()">Continue</button>     
         </div>
         <h1>Current winnings: &euro; {{userCorrectResponses}}</h1>
         <div v-if="this.gameFinish">
@@ -24,10 +27,10 @@
           <p>Explanation...</p>
         </div>
     </div>
-    <div class="col-md-4 priceList"> 
+    <div class="col-md-4 priceList" v-if="!gameFinish"> 
       <div><br /></div>
-      <div v-if="pleaseContinue" v-for='(price, index) in filterPriceList' :key='index'>
-        <button v-if="price.show" type="button" class="priceButton" v-on:click="showQuestion(price.price)">&euro; {{price.price}} </button>    
+      <div v-for='(price, index) in filterPriceList' :key='index'>
+        <button v-if="price.show" type="button" class="priceButton" :disabled="showExplanation" v-on:click="showQuestion(price.price)">&euro; {{price.price}} </button>    
       </div>
     </div>
   </div>
@@ -53,10 +56,14 @@ export default {
       filterPriceList: [],
       showExplanation: false,
       pleaseContinue: true,
-      gameFinish: false
+      gameFinish: false,
+      start: false
     };
   },
   methods: {
+   startGame: function() {
+     this.start = true;
+    },
     continueGame: function() {
       this.pleaseContinue = true;
       this.showExplanation = false;
