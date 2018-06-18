@@ -1,35 +1,36 @@
 
 <template>
-  <div class="hello">
-    <h1>{{ quiz.title }}</h1>
-    <!-- index is used to check with current question index -->
-    <div v-if='question'>
-      <!-- Hide all questions, show only the one with index === to current question index -->
-        <h2>{{ question.text }}</h2>
+<div class="hello">
+  <div class="row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4">
+      <h1>{{ quiz.title }}</h1>
+      <div class="questionbox">{{ question.text }}</div>
         <ul>
           <li v-for='(response, index) in question.responses' :key='index'>
-             <button type="button" class="btn btn-outline-primary" v-on:click="validateQuestion(response.correct)">{{response.text}} </button>          
+            <button type="button" class="answerbox" v-on:click="validateQuestion(response.correct)">{{response.text}} </button>                       
           </li>
         </ul>
-        <!-- Fix show explanation for user if the anwser is not correct -->
-         <div v-if="showExplanation">
-               <p>{{question.explanation}}</p>
-                <button type="button" class="btn btn-outline-primary" v-on:click="continueGame()">Continue</button>  
-                 or 
-                <button type="button" class="btn btn-outline-primary"  v-on:click="quitGame()">Close the deal</button>     
-         </div>
+        <div v-if="showExplanation">
+                <p>{{question.explanation}}</p>
+                  <button type="button" class="btn btn-outline-primary" v-on:click="continueGame()">Continue</button>  
+                or 
+                  <button type="button" class="btn btn-outline-primary"  v-on:click="quitGame()">Close the deal</button>     
+        </div>
+        <h1>Current winnings: &euro; {{userCorrectResponses}}</h1>
+        <div v-if="this.gameFinish">
+          <p v-if="userCorrectResponses>0">Congrats...</p>
+          <p v-if="userCorrectResponses==0">Never give up...</p>
+          <p>Explanation...</p>
+        </div>
     </div>
-    <!-- Fix styling prices to interact with questions -->
-    <div v-if="pleaseContinue" v-for='(price, index) in filterPriceList' :key='index'>
-      <button v-if="price.show" type="button" class="btn btn-outline-primary" v-on:click="showQuestion(price.price)">{{price.price}} </button>    
-    </div>
-    <h1>Bank Offer: &euro; {{userCorrectResponses}}</h1>
-    <div v-if="this.gameFinish">
-      <p v-if="userCorrectResponses>0">Congrats...</p>
-      <p v-if="userCorrectResponses==0">Never give up...</p>
-      <p>Explanation...</p>
+    <div class="col-md-4 priceList"> 
+      <div v-if="pleaseContinue" v-for='(price, index) in filterPriceList' :key='index'>
+        <button v-if="price.show" type="button" class="priceButton" v-on:click="showQuestion(price.price)">&euro; {{price.price}} </button>    
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -112,16 +113,51 @@ export default {
       questions: [
         {
           text: "Question 1",
-          price: 300,
+          price: 1000,
           explanation: " blbalbalbalba",
           responses: [
-            { text: "Wrong, too bad.", correct: true },
-            { text: "Right!", correct: false }
+            { text: "This is a very long answer so we can see how big the answer box needs to be", correct: true },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
           ]
         },
         {
-          text: "Question 2",
-          price: 200,
+          text: "Very mucho questionerios sadfdsfkljsadfhdsk, fsadfasdjkhkjsalfklds, sdafasdfdsasdaaaaaaaaaaaaaaaaaaad shdajhfsda hjfdsagfjh hjfsda jhkf",
+          price: 900,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "This is a very long answer so we can see how big the answer box needs to be", correct: true },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+          ]
+        },
+        {
+          text: "Question 3",
+          price: 800,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "This is a very long answer so we can see how big the answer box needs to be", correct: true },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+          ]
+        },
+        {
+          text: "Question 4",
+          price: 700,
+          explanation: " blbalbalbalba",
+          responses: [
+            { text: "This is a very long answer so we can see how big the answer box needs to be", correct: true },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+            { text: "This is a very long answer so we can see how big the answer box needs to be!", correct: false },
+          ]
+        },
+        {
+          text: "Question 5",
+          price: 600,
           explanation: " blbalbalbalba",
           responses: [
             { text: "Right answer", correct: true },
@@ -159,9 +195,49 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 0px;
 }
 a {
   color: #42b983;
 }
+
+.questionbox {
+  background:linear-gradient(to right,black, blue, black);
+  color: white;
+  border-color: orange;
+  border-width: 5px;
+  border-style: ridge;
+	width: 800px;
+	margin-left: 15px;
+	padding: 8px;
+  font-size: 1em;
+}
+
+.answerbox {
+  background:linear-gradient(to right,black, blue, black);
+  color: white;
+  border-color: orange;
+  border-width: 4px;
+	width: 400px;
+	margin: 5px;
+	padding: 8px;
+  font-size: 1em;
+}
+
+.priceList {
+  background: linear-gradient(black, blue, black);
+  border-color: gray;
+  border-width: 15px;
+  height: 400px;
+  border-style: ridge;
+  max-width: 330px;
+}
+
+.priceButton {
+  background:transparent;
+  color: orange;
+  border-color: transparent;
+  width: 250px;
+}
+
 </style>
