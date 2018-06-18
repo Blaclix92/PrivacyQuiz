@@ -25,6 +25,7 @@
         </div>
     </div>
     <div class="col-md-4 priceList"> 
+      <div><br /></div>
       <div v-if="pleaseContinue" v-for='(price, index) in filterPriceList' :key='index'>
         <button v-if="price.show" type="button" class="priceButton" v-on:click="showQuestion(price.price)">&euro; {{price.price}} </button>    
       </div>
@@ -207,7 +208,7 @@ a {
   border-color: orange;
   border-width: 5px;
   border-style: ridge;
-	width: 800px;
+	width: 590px;
 	margin-left: 15px;
 	padding: 8px;
   font-size: 1em;
@@ -218,7 +219,7 @@ a {
   color: white;
   border-color: orange;
   border-width: 4px;
-	width: 400px;
+	width: 290px;
 	margin: 5px;
 	padding: 8px;
   font-size: 1em;
