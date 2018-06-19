@@ -32,6 +32,7 @@
       <div v-for='(price, index) in filterPriceList' :key='index'>
         <button v-if="price.show" type="button" class="priceButton" :disabled="showExplanation" v-on:click="showQuestion(price.price)">&euro; {{price.price}} </button>    
       </div>
+      <div><br /></div>
     </div>
   </div>
 </div>
@@ -281,7 +282,7 @@ a {
   background: linear-gradient(black, blue, black);
   border-color: gray;
   border-width: 15px;
-  height: 400px;
+  height: 100%;
   border-style: ridge;
   max-width: 330px;
 }
