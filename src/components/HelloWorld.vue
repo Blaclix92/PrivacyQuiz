@@ -3,7 +3,11 @@
 <div class="hello">
   <div v-if="!start">
     <h1>Welcome to Privacy Quiz</h1>
-    <p>Explanation</p>
+    <p>The journey to gain knowlogde on privacy on your own is very lame and boring. Some of these information can inform on how important is your privacy, how to protect your privacy. What are the new rules on privacy. 
+       How the users are protected with the new rules on privacy. The penalty for not following the new rules and more.
+       This is where Privacy Quiz game comes in handy where we are able to save your time on research and deliver information in a fun way.
+       Press on start to begin your journey on how to protect your privacy.
+     </p>
     <button type="button" class="btn btn-outline-primary"  v-on:click="startGame()">Start</button>     
   </div>
   <div class="row"  v-if="start">
@@ -22,9 +26,14 @@
         </div>
         <h1>Current winnings: &euro; {{userCorrectResponses}}</h1>
         <div v-if="this.gameFinish">
-          <p v-if="userCorrectResponses>0">Congrats...</p>
-          <p v-if="userCorrectResponses==0">Never give up...</p>
-          <p>Explanation...</p>
+          <p v-if="userCorrectResponses>0">Congratulation on finishing our Privacy Quiz game.</p>
+          <p v-if="userCorrectResponses==0">Please try again.</p>
+          <p><strong>Summary</strong></p>
+          <p>The purpose of this game is to inform why their privacy is now very important to protect.
+             After finishing this game the user will have enough knowlegde on how to protect their privacy.</p>
+          <p>Rules....</p>
+          <p>Developers</p>
+          <p>Users</p>   
         </div>
     </div>
     <div class="col-md-4 priceList" v-if="!gameFinish"> 
